@@ -6,6 +6,7 @@ import (
 	"github.com/rveen/ogdl"
 	"reflect"
 	"buildben/carthage_cache/client/environment"
+	"os"
 )
 
 type Framework struct {
@@ -55,7 +56,7 @@ func FrameworkFromOgdlString(s string) Framework {
 	f.Name = strings.Split(name.String(), "/")[1]
 	f.Version = fVersion.String()
 	f.OS = environment.Platform
-	f.Xcode = "8.1"
+	f.Xcode = os.Getenv(Xcode_Version_Key)
 
 	return f
 }

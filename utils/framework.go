@@ -8,6 +8,11 @@ import (
 	"github.com/pierrre/archivefile/zip"
 	"fmt"
 	log "github.com/Sirupsen/logrus"
+	"regexp"
+	"bufio"
+	"os"
+	"path/filepath"
+	"path"
 )
 
 
@@ -19,13 +24,13 @@ func HandleParsedFramework(f model.Framework) {
 		download(f)
 		unarchive(f)
 	case ActionCreate:
-		fmt.Printf("%s doesn't exist in Cloud\n", f.Name)
+		fmt.Printf("%s doesn't exist in Cloud.\n", f.Name)
 		checkout(f)
-		build(f)
-		archive(f)
+		n := build(f)
+		archive(f, n)
 		upload(f)
 	case ActionLocal:
-		fmt.Printf("%s is not versioned - Cloud is unavaliable\n", f.Name)
+		fmt.Printf("%s is not versioned - Cloud is unavaliable.\n", f.Name)
 		checkout(f)
 		build(f)
 	}
@@ -66,20 +71,50 @@ func checkout(f model.Framework) {
 	}
 }
 
-func build(f model.Framework) {
+func build(f model.Framework) string {
 	fmt.Printf("Building %s, it might take a while...\n", f.Name)
 	cmd := exec.Command("carthage", "build", f.Name)
 	var out bytes.Buffer
 	cmd.Stdout = &out
+
 	err := cmd.Run()
+
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	filePath := findLogFilePath(out.String())
+	return findFrameworkName(filePath)
 }
 
-func archive(f model.Framework) {
+
+func findLogFilePath(inc string) string {
+	r, _ := regexp.Compile("/var.*\\.log")
+	return r.FindString(inc)
+}
+
+func findFrameworkName(filePath string) string {
+	file, err := os.Open(filePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	r, _ := regexp.Compile("/.*\\.framework")
+	for scanner.Scan() {
+		line := scanner.Text()
+		if result := r.FindString(line); result != "" {
+			_, name := filepath.Split(result)
+			return name
+		}
+	}
+	log.Fatal("Couldn't find the framework name!")
+	return ""
+}
+
+func archive(f model.Framework, n string) {
 	fmt.Printf("Archiving %s\n", f.Name)
-	zip.ArchiveFile(f.FilePath(), f.ZipFilePath(), nil)
+	zip.ArchiveFile(path.Join(f.Directory(), n), f.ZipFilePath(), nil)
 }
 
 func download(f model.Framework) {
