@@ -1,4 +1,4 @@
-package: projects/buildben_carthage_client
+package: buildben/carthage_cache/client
 import:
 - package: github.com/rveen/ogdl
   version: ~1.0.0
