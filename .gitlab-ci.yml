@@ -1,0 +1,23 @@
+stage:
+  - build
+  - deploy
+
+build: 
+  stage: build
+  script:
+    - GOPATH=$(pwd)/GO_PATH_FOLDER
+    - GO_PROJECT_PATH=$(go-prepare-folder) 
+    - go build $GO_PROJECT_PATH/cmd/carthage_cache.go
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - carthage_cache
+  only:
+    - master
+
+deploy:
+  stage: deploy
+  script:
+    - scp carthage_cache gitlab-ci@buildben.io:/var/www/utils/carthage_cache
+  only:
+    - master
