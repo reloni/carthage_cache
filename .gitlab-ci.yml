@@ -1,4 +1,4 @@
-stage:
+stages:
   - build
   - deploy
 
@@ -8,6 +8,8 @@ build:
     - GOPATH=$(pwd)/GO_PATH_FOLDER
     - GO_PROJECT_PATH=$(go-prepare-folder) 
     - go build $GO_PROJECT_PATH/cmd/carthage_cache.go
+  tags:
+    - go
   artifacts:
     expire_in: 1 day
     paths:
