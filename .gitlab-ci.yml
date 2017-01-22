@@ -9,7 +9,7 @@ build:
     - GO_PROJECT_PATH=$(go-prepare-folder) 
     - cd $GO_PROJECT_PATH
     - glide install
-    - cd "$GOPATH/..""
+    - cd $GOPATH/..
     - go build $GO_PROJECT_PATH/cmd/carthage_cache.go
   tags:
     - go
