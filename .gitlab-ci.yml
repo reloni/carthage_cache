@@ -7,8 +7,7 @@ build:
   script:
     - export GOPATH=$(pwd)/GO_PATH_FOLDER 
     - GO_PROJECT_PATH=$(go-prepare-folder) 
-    - echo $GO_PROJECT_PATH
-    - echo $GOPATH
+    - glide install --yaml $GO_PROJECT_PATH/glide.yaml
     - go build $GO_PROJECT_PATH/cmd/carthage_cache.go
   tags:
     - go
