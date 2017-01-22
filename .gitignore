@@ -1,5 +1,11 @@
 # Created by https://www.gitignore.io/api/go,intellij+iml,osx,windows,linux
 
+# iOS
+Carthage/
+Cartfile
+Cartfile.resolved
+fastlane/
+
 ### Go ###
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
