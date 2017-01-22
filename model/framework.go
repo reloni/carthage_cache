@@ -21,7 +21,7 @@ type Framework struct {
 const Xcode_Version_Key string = "XCODE_VERSION"
 
 func (f *Framework)ZipFilePath() string {
-	return strings.Replace(f.Name, "-", "_", -1) + ".framework.zip"
+	return strings.Replace(f.Name, "-", "_", -1) + ".zip"
 }
 func (f *Framework)FilePath() string {
 	return path.Join(f.Directory(), strings.Replace(f.Name, "-", "_", -1) + ".framework")

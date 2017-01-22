@@ -13,6 +13,7 @@ import (
 	"os"
 	"path/filepath"
 	"path"
+	"github.com/jhoonb/archivex"
 )
 
 
@@ -71,7 +72,7 @@ func checkout(f model.Framework) {
 	}
 }
 
-func build(f model.Framework) string {
+func build(f model.Framework) []string {
 	fmt.Printf("Building %s, it might take a while...\n", f.Name)
 	cmd := exec.Command("carthage", "build", f.Name)
 	var out bytes.Buffer
@@ -84,7 +85,7 @@ func build(f model.Framework) string {
 	}
 
 	filePath := findLogFilePath(out.String())
-	return findFrameworkName(filePath)
+	return findFrameworkFiles(filePath)
 }
 
 
@@ -93,28 +94,47 @@ func findLogFilePath(inc string) string {
 	return r.FindString(inc)
 }
 
-func findFrameworkName(filePath string) string {
+func findFrameworkFiles(filePath string) []string {
 	file, err := os.Open(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
-	r, _ := regexp.Compile("/.*\\.framework")
+	r, _ := regexp.Compile("/.*\\.framework$")
+
+	files := []string {}
 	for scanner.Scan() {
 		line := scanner.Text()
 		if result := r.FindString(line); result != "" {
 			_, name := filepath.Split(result)
-			return name
+			files = appendIfMissing(files, name)
 		}
 	}
-	log.Fatal("Couldn't find the framework name!")
-	return ""
+	if len(files) == 0 {
+		log.Fatal("Couldn't find the framework name!")
+	}
+
+	return files
 }
 
-func archive(f model.Framework, n string) {
+func appendIfMissing(slice []string, i string) []string {
+	for _, ele := range slice {
+		if ele == i {
+			return slice
+		}
+	}
+	return append(slice, i)
+}
+
+func archive(f model.Framework, paths []string) {
 	fmt.Printf("Archiving %s\n", f.Name)
-	zip.ArchiveFile(path.Join(f.Directory(), n), f.ZipFilePath(), nil)
+	archive := new(archivex.ZipFile)
+	archive.Create(f.ZipFilePath())
+	for _, p := range paths {
+		archive.AddAll(path.Join(f.Directory(), p), true)
+	}
+	archive.Close()
 }
 
 func download(f model.Framework) {
