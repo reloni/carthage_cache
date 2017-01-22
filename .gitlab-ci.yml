@@ -5,7 +5,7 @@ stages:
 build: 
   stage: build
   script:
-    - GOPATH=$(pwd)/GO_PATH_FOLDER 
+    - export GOPATH=$(pwd)/GO_PATH_FOLDER 
     - GO_PROJECT_PATH=$(go-prepare-folder) 
     - cd $GO_PROJECT_PATH
     - glide install
