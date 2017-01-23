@@ -77,6 +77,12 @@ func build(f model.Framework) []string {
 	cmd := exec.Command("carthage", "build", f.Name, "--platform", f.OS)
 	var out bytes.Buffer
 	cmd.Stdout = &out
+	if f.Version == "8.0" {
+		env := os.Environ()
+		env = append(env, fmt.Sprintf("TOOLCHAINS=%s", "com.apple.dt.toolchain.Swift_2_3"))
+		cmd.Env = env
+	}
+
 	err := cmd.Run()
 	if err != nil {
 		log.Fatal(err)
