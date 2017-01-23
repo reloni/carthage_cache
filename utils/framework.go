@@ -74,12 +74,10 @@ func checkout(f model.Framework) {
 
 func build(f model.Framework) []string {
 	fmt.Printf("Building %s, it might take a while...\n", f.Name)
-	cmd := exec.Command("carthage", "build", f.Name)
+	cmd := exec.Command("carthage", "build", f.Name, "--platform", f.OS)
 	var out bytes.Buffer
 	cmd.Stdout = &out
-
 	err := cmd.Run()
-
 	if err != nil {
 		log.Fatal(err)
 	}
