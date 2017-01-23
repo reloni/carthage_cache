@@ -5,6 +5,7 @@ Carthage/
 Cartfile
 Cartfile.resolved
 fastlane/
+*.zip
 
 ### Go ###
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
