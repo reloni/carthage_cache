@@ -11,6 +11,7 @@ import (
 	"reflect"
 	"strings"
 	"buildben/carthage_cache/client/environment"
+	"crypto/tls"
 )
 
 
@@ -20,7 +21,10 @@ func Upload(f model.Framework) {
 		log.Error(fmt.Sprintf("Unable to upload %s to the cloud ==> %s", f.Name, err.Error()))
 		return
 	}
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr}
 	_, err = client.Do(req)
 	if err != nil {
 		log.Error(fmt.Sprintf("Unable to upload %s to the cloud ==> %s", f.Name, err.Error()))
@@ -31,10 +35,14 @@ func Upload(f model.Framework) {
 func Exists(f model.Framework) bool {
 	req, _ := http.NewRequest("GET", joinUrl(environment.ServerAddress, "exists"), nil)
 	appendGetFrameworkQuery(req, f)
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
 	client := &http.Client{
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			return http.ErrUseLastResponse
 		},
+		Transport: tr,
 	}
 	res, err := client.Do(req)
 
@@ -51,7 +59,10 @@ func Exists(f model.Framework) bool {
 func Download(f model.Framework) bool{
 	req, _ := http.NewRequest("GET", joinUrl(environment.ServerAddress, "download"), nil)
 	appendGetFrameworkQuery(req, f)
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr}
 	res, err := client.Do(req)
 	out, err := os.Create(f.ZipFilePath())
 	defer out.Close()
