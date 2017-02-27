@@ -28,6 +28,7 @@ func HandleParsedFramework(f model.Framework) {
 		fmt.Printf("%s doesn't exist in Cloud.\n", f.Name)
 		checkout(f)
 		n := build(f)
+		if len(n) == 0 { return }
 		archive(f, n)
 		upload(f)
 	case ActionLocal:
@@ -116,7 +117,7 @@ func findFrameworkFiles(filePath string) []string {
 		}
 	}
 	if len(files) == 0 {
-		log.Fatal("Couldn't find the framework name!")
+		fmt.Print("Couldn't find the framework name! Skipping...\n")
 	}
 
 	return files
