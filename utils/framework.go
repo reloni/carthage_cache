@@ -117,7 +117,7 @@ func findFrameworkFiles(filePath string) []string {
 		}
 	}
 	if len(files) == 0 {
-		fmt.Print("Couldn't find the framework name! Skipping...\n\n")
+		fmt.Print("No schemes found for selected platform. Skipping...\n\n")
 	}
 
 	return files
