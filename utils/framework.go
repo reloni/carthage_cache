@@ -55,7 +55,7 @@ func actionForFramework(f model.Framework) Action{
 		return ActionDownload
 	}
 
-	if f.Location == githubLocation && len(f.Version) < 10 {
+	if f.Location == githubLocation && len(f.Version) < 20 {
 		return ActionCreate
 	}
 
