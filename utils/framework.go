@@ -14,9 +14,29 @@ import (
 	"path/filepath"
 	"path"
 	"github.com/jhoonb/archivex"
+	"github.com/rveen/ogdl"
+	"strings"
+	"buildben/carthage_cache/client/environment"
 )
 
 
+func FrameworkFromOgdlString(s string) model.Framework {
+	var f model.Framework = model.Framework{}
+
+	g := ogdl.ParseString(s)
+	host :=  g.GetAt(0)
+	name := host.GetAt(0)
+	fVersion := name.GetAt(0)
+
+
+	f.Location = host.String()
+	f.Name = strings.Split(name.String(), "/")[1]
+	f.Version = fVersion.String()
+	f.OS = environment.Platform
+	f.Xcode = XcodeBuildVersion()
+
+	return f
+}
 
 func HandleParsedFramework(f model.Framework) {
 	switch actionForFramework(f) {
