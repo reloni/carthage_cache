@@ -1,5 +1,5 @@
-hash: 3e704fcbac9fb1acbba0d5a1a67ed577ff01add30392212bd0f3bea6b8e55945
-updated: 2017-01-22T17:31:31.256418037+03:00
+hash: cff709854917b3e3d29020ada39e4872cc236c244bc642844e771169c52e35d6
+updated: 2017-11-09T12:30:34.284457257+03:00
 imports:
 - name: github.com/fatih/structs
   version: a720dfa8df582c51dee1b36feabb906bde1588bd
@@ -7,8 +7,6 @@ imports:
   version: 629574ca2a5df945712d3079857300b5e4da0236
 - name: github.com/jhoonb/archivex
   version: b669bdadd30ace382d6e082dfcc8e33b926db1a1
-- name: github.com/joho/godotenv
-  version: a01a834e1654b4c9ca5b3ad05159445cc9c7ad08
 - name: github.com/pierrre/archivefile
   version: 0be3bf065bebd3863a58c6b2a0f0a532f1e888e6
   subpackages:
@@ -16,7 +14,7 @@ imports:
 - name: github.com/rveen/ogdl
   version: 62e46ef6567a7624b02f3194c745fb86286b4e2b
 - name: github.com/Sirupsen/logrus
-  version: d26492970760ca5d33129d2d799e34be5c4782eb
+  version: ba1b36c82c5e05c4f912a88eab0dcd91a171688f
 - name: github.com/spf13/viper
   version: 5ed0fc31f7f453625df314d8e66b9791e8d13003
 - name: golang.org/x/sys

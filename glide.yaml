@@ -2,8 +2,6 @@ package: buildben/carthage_cache/client
 import:
 - package: github.com/rveen/ogdl
   version: ~1.0.0
-- package: github.com/joho/godotenv
-  version: ~1.0.0
 - package: github.com/fatih/structs
 - package: github.com/pierrre/archivefile
   subpackages:
