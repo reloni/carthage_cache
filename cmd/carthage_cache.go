@@ -1,19 +1,16 @@
 package main
 
 import (
-	"buildben/carthage_cache/client/model"
-	"buildben/carthage_cache/client/utils"
+	. "buildben/carthage_cache/client/utils"
 )
 
 func main() {
-	utils.LoadConfig()
+	LoadConfig()
+	LoadProcessArguments()
 
-	utils.LoadEnvDefaults()
-	utils.LoadProcessArguments()
-
-	utils.ParseCartfile(func (line string) {
-		f := model.FrameworkFromOgdlString(line)
-		utils.HandleParsedFramework(f)
+	ParseCartfile(func (line string) {
+		f := FrameworkFromOgdlString(line)
+		HandleParsedFramework(f)
 	})
 }
 
