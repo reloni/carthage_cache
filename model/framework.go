@@ -12,6 +12,7 @@ type Framework struct {
 	Version 	string	`form:"version" binding:"required"`
 	OS 			string	`form:"os" binding:"required"`
 	Xcode		string 	`form:"xcode" binding:"required"`
+	Linking		string	`form:"static" binding:"required"`
 }
 
 func (f *Framework)ZipFilePath() string {

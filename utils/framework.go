@@ -95,7 +95,19 @@ func checkout(f model.Framework) {
 
 func build(f model.Framework) []string {
 	fmt.Printf("Building %s, it might take a while...\n", f.Name)
-	cmd := exec.Command("carthage", "build", f.Name, "--platform", f.OS)
+
+	var cmd *exec.Cmd
+	if f.Linking == "static" {
+		ldPath, shPath := ExportBuildStaticScripts()
+		env := os.Environ()
+		env = append(env, fmt.Sprintf("LD_PATH=%s", ldPath))
+
+		cmd = exec.Command(shPath, f.Name, "--platform", f.OS)
+		cmd.Env = env
+	} else {
+		cmd = exec.Command("carthage", "build", f.Name, "--platform", f.OS)
+	}
+
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	

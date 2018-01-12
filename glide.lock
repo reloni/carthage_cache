@@ -1,12 +1,14 @@
-hash: cff709854917b3e3d29020ada39e4872cc236c244bc642844e771169c52e35d6
-updated: 2017-11-09T12:30:34.284457257+03:00
+hash: 4ff4c51441ecaf44705087f5483507b1574dc2466a54ce1f8a7df53f452fb701
+updated: 2018-01-12T13:14:24.800336881+03:00
 imports:
 - name: github.com/fatih/structs
   version: a720dfa8df582c51dee1b36feabb906bde1588bd
 - name: github.com/fsnotify/fsnotify
-  version: 629574ca2a5df945712d3079857300b5e4da0236
+  version: c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9
 - name: github.com/jhoonb/archivex
   version: b669bdadd30ace382d6e082dfcc8e33b926db1a1
+- name: github.com/jteeuwen/go-bindata
+  version: bbd0c6e271208dce66d8fda4bc536453cd27fc4a
 - name: github.com/pierrre/archivefile
   version: 0be3bf065bebd3863a58c6b2a0f0a532f1e888e6
   subpackages:
