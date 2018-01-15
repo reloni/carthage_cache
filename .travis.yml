@@ -1,0 +1,11 @@
+language: go
+go_import_path: buildben/carthage_cache/client
+go: 1.8
+branches: master
+
+install:
+  - curl https://glide.sh/get | sh
+  - glide install
+script:
+  - GOOS=darwin GOARCH=amd64 go build cmd/carthage_cache.go
+  - scp carthage_cache travis-ci@buildben.io:/var/www/utils/carthage_cache
