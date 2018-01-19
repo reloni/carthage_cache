@@ -3,7 +3,7 @@
 Community-driven centralised *Carthage* cache for dynamic & static binaries of your frameworks. 
 Each one has specifically built for your Xcode & Swift versions to speed up your day.
 
-# Install
+## Install
 There're two ways: using precompiled binary or building from sources.
 ### Download binary
 Paste that at a Terminal prompt:
@@ -21,7 +21,7 @@ GOOS=darwin GOARCH=amd64 go build -o /usr/local/bin/bb_carthage_cache cmd/cartha
 ```
 3. Done. Now you can use it as any other tool. 
 
-# Usage
+## Usage
 
 ### Dynamic linking
 Run in your Cartfile.resolved location:
@@ -51,13 +51,13 @@ bb_carthage_cache -platform mac -static
 - Be sure to remove copy-frameworks step from your build steps when using static linking. Otherwise it will double your dependencies size.
 - Static linking drops all resources from frameworks, keep that in mind. Dynamic & static linking together is not supported (yet)
 
-# Support
+## Support
 There're a few limitations still:
 - Cartfile.resolved won't be updated when you add a framework to your Cartfile. You must do it manually (yet)
 
 If you find yourself stuck upon an obstacle feel free to open an issue in any comfortable format. I check it almost every day. 
 
-# Uninstall
+## Uninstall
 Maybe you would open an issue first? 
 But if you strongly decided to purge that evil from your property... then:
 ```bash
@@ -65,5 +65,5 @@ sudo rm -f /usr/local/bin/bb_carthage_cache
 ```
 That's it. Bye-bye.
 
-# Motivation
+## Motivation
 Leave a star if you find it useful. It hugely motivates to go on with the development. 
