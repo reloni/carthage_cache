@@ -21,7 +21,7 @@ GOOS=darwin GOARCH=amd64 go build -o /usr/local/bin/bb_carthage_cache cmd/cartha
 ```
 3. Done. Now you can use it as any other tool. 
 
-## Usage
+# Usage
 
 ### Dynamic linking
 Run in your Cartfile.resolved location:
