@@ -55,7 +55,7 @@ bb_carthage_cache -platform mac -static
 There're a few limitations still:
 - Cartfile.resolved won't be updated when you add a framework to your Cartfile. You must do it manually (yet)
 - Realm static library is built without bitcode and dsym for compression purposes
-- Realm static library presence is limited to Xcode ```9.1```, ```9.2```, ```8.3``` and ```3.0.0``` or later version of Realm itself.
+- Realm static library presence is limited to Xcode ```9.1```, ```9.2``` and ```3.0.1``` or later version of Realm itself.
 
 If you find yourself stuck upon an obstacle feel free to open an issue in any comfortable format. I check it almost every day. 
 
