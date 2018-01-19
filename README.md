@@ -3,7 +3,7 @@
 Community-driven centralised *Carthage* cache for dynamic & static binaries of your frameworks. 
 Each one has specifically built for your Xcode & Swift versions to speed up your day.
 
-## Install
+# Install
 There're two ways: using precompiled binary or building from sources.
 ### Download binary
 Paste that at a Terminal prompt:
