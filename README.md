@@ -5,6 +5,8 @@ Each one has specifically built for your Xcode & Swift versions to speed up your
 
 ## Install
 There're two ways: using precompiled binary or building from sources.
+
+**Note:** in CI/CD systems precompiled binary usage is the recommended way.
 ### Download binary
 Paste that at a Terminal prompt:
 ```bash
