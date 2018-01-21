@@ -6,8 +6,7 @@ Each one has specifically built for your Xcode & Swift versions to speed up your
 ## Install
 There're two ways: using precompiled binary or building from sources.
 
-**Note:** in CI/CD systems precompiled binary is the recommended way.
-### Download binary
+### Download binary (CI/CD recommended)
 Paste that at a Terminal prompt:
 ```bash
 wget https://static.buildben.io/carthage/client -O /usr/local/bin/bb_carthage_cache | chmod +x /usr/local/bin/bb_carthage_cache 
