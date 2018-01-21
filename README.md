@@ -1,6 +1,6 @@
 # Carthage Cache [![Build Status](https://travis-ci.org/buildben/carthage_cache.svg?branch=master)](https://travis-ci.org/buildben/carthage_cache) [![codebeat badge](https://codebeat.co/badges/76ffb560-17e2-4f98-a0bc-3ce9c4314028)](https://codebeat.co/projects/github-com-buildben-carthage_cache-master)
 
-Community content-driven centralised *Carthage* cache for dynamic & static binaries of your frameworks. 
+Community content-driven *Carthage* cache for dynamic & static binaries of your frameworks. 
 Each one has specifically built for your Xcode & Swift versions to speed up your day.
 
 ## Install
